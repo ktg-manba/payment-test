@@ -22,6 +22,8 @@ interface Product {
   id: string;
   name: string;
   title: string;
+  isSubscription?: boolean;
+  subscriptionPeriod?: "monthly" | "yearly";
 }
 
 export default function PurchaseHistory() {
