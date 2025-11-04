@@ -24,7 +24,6 @@ export default function DashboardClient({ user, subscription: initialSubscriptio
   const [loading, setLoading] = useState(true);
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [subscription, setSubscription] = useState<Subscription | null>(initialSubscription || null);
-  const supabase = createClient();
 
   // 如果props中的user为undefined，尝试从客户端获取用户
   useEffect(() => {
@@ -42,6 +41,7 @@ export default function DashboardClient({ user, subscription: initialSubscriptio
       }
 
       try {
+        const supabase = createClient();
         const {
           data: { user: authUser },
         } = await supabase.auth.getUser();
@@ -54,7 +54,7 @@ export default function DashboardClient({ user, subscription: initialSubscriptio
     };
 
     getUserFromClient();
-  }, [user, initialSubscription, supabase]);
+  }, [user, initialSubscription]);
 
   const formatSubscriptionDate = (dateString: string | null): string => {
     if (!dateString) return "未知";
@@ -73,6 +73,7 @@ export default function DashboardClient({ user, subscription: initialSubscriptio
   };
 
   const handleSignOut = async () => {
+    const supabase = createClient();
     await supabase.auth.signOut();
     window.location.href = "/";
   };

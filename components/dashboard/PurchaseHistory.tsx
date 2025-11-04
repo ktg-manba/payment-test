@@ -30,12 +30,12 @@ export default function PurchaseHistory() {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [products, setProducts] = useState<Record<string, Product>>({});
   const [loading, setLoading] = useState(true);
-  const supabase = createClient();
   const router = useRouter();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const supabase = createClient();
         // 获取产品信息
         const productsRes = await fetch("/api/products");
         const productsData = await productsRes.json();
@@ -64,7 +64,7 @@ export default function PurchaseHistory() {
     };
 
     fetchData();
-  }, [supabase]);
+  }, []);
 
   const getProductName = (productId: string): string => {
     const product = products[productId];

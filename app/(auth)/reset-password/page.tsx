@@ -1,3 +1,6 @@
+export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs';
+
 export const metadata = {
   title: 'Reset Password - Creative',
   description: 'Page description',

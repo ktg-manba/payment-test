@@ -30,7 +30,6 @@ export default function Pricing() {
   const [products, setProducts] = useState<Record<string, Product>>({});
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const router = useRouter();
-  const supabase = createClient();
 
   // 获取产品信息
   useEffect(() => {
@@ -54,6 +53,7 @@ export default function Pricing() {
   const handlePayment = async (productId: string) => {
     try {
       setLoading(true);
+      const supabase = createClient();
       const { data: userRes } = await supabase.auth.getUser();
       if (!userRes?.user) {
         router.push("/signin");

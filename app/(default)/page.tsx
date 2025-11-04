@@ -1,3 +1,6 @@
+export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs';
+
 export const metadata = {
   title: 'AI编程学习 - 0基础入门',
   description: '小白0基础入门AI编程，借助AI编程工具快速开发出你的第一个AI应用和网站',

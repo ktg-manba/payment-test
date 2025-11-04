@@ -10,12 +10,12 @@ export default function Header({ nav = true }: { nav?: boolean }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [isNavigating, setIsNavigating] = useState(false);
-  const supabase = createClient();
   const router = useRouter();
 
   useEffect(() => {
     // 检查用户登录状态
     const checkUser = async () => {
+      const supabase = createClient();
       const {
         data: { user },
       } = await supabase.auth.getUser();
@@ -36,7 +36,7 @@ export default function Header({ nav = true }: { nav?: boolean }) {
     };
 
     checkUser();
-  }, [supabase]);
+  }, []);
   
   // 处理导航到 dashboard 的点击事件
   const handleDashboardClick = (e: React.MouseEvent) => {
